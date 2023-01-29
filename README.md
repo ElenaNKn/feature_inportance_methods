@@ -74,3 +74,13 @@ A link to notebook with the code: https://github.com/ElenaNKn/scaling_methods/bl
 2. Ridge and lasso models (linear regression models with regularization) definitely require scaling of feature variables. It can't be definitely determined, which scaling technique is better to use. I'd recomend to try several techniques: you may start with any normalization technique and then try standardization, if your feature variables has significant variance.
 3. The results obtained for the decision tree model need clarification. If you plot decision trees for all scaled and unscaled data, you'll see that these trees are completely identical (except feature values). This means that decision tree algorithm is really unsensitive to feature scaling. Observed difference in MSE values is a result of issues of rounding of floating-point variables in Python (these problems are described in documentation https://docs.python.org/3/tutorial/floatingpoint.html). In short, if the threshold of a feature at some node appeared to be exactly equal to a feature value for some example, for which you need a prediction, then for scaled data the algorithm may "go" the wrong branch of the tree due to floating-point rounding issues. I plan to give more detailed explanation of this problem  in the next article, but now I can just recommend: **Don't scale data for tree models**, because scaling may lead to incorrect predictions in ML models of this type.
 4. Results obtained for CNN model show that data scaling is extremely important for this type of models, min-max normalization being preferable.
+
+## **References**   
+
+https://towardsdatascience.com/which-models-require-normalized-data-d85ca3c85388   
+
+https://medium.com/greyatom/why-how-and-when-to-scale-your-features-4b30ab09db5e   
+
+https://medium.com/analytics-vidhya/ridge-regression-regularization-fundamentals-cc631ba37b1a   
+
+https://www.kaggle.com/questions-and-answers/59305   
